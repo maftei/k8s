@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: crud-demo
+  namespace: argocd
+spec:
+  project: default
+  source:
+    # Path to your local manifests (we'll use a Git repo approach)
+    # For local testing, we'll apply directly first
+    repoURL: https://github.com/PLACEHOLDER/workflow-templates.git
+    targetRevision: HEAD
+    path: Service/crud/k8s
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: crud-app
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
