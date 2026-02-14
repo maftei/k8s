@@ -6,11 +6,9 @@ metadata:
 spec:
   project: default
   source:
-    # Path to your local manifests (we'll use a Git repo approach)
-    # For local testing, we'll apply directly first
-    repoURL: https://github.com/PLACEHOLDER/workflow-templates.git
+    repoURL: https://github.com/maftei/k8s.git
     targetRevision: HEAD
-    path: Service/crud/k8s
+    path: crud/k8s
   destination:
     server: https://kubernetes.default.svc
     namespace: crud-app
