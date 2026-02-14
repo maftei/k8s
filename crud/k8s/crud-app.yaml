@@ -29,21 +29,18 @@ data:
 
 ---
 # ===========================================
-# SECRET - Sensitive data (base64 encoded)
+# SECRET - Create manually, not stored in Git!
 # ===========================================
-apiVersion: v1
-kind: Secret
-metadata:
-  name: crud-secrets
-  namespace: crud-app
-  labels:
-    app: crud-demo
-type: Opaque
-data:
-  # echo -n 'admin' | base64 = YWRtaW4=
-  DB_USERNAME: YWRtaW4=
-  # echo -n 'supersecret123' | base64 = c3VwZXJzZWNyZXQxMjM=
-  DB_PASSWORD: c3VwZXJzZWNyZXQxMjM=
+# Run this command once to create the secret:
+#
+# kubectl create secret generic crud-secrets \
+#   --from-literal=DB_USERNAME=admin \
+#   --from-literal=DB_PASSWORD=supersecret123 \
+#   -n crud-app
+#
+# Or use Sealed Secrets / External Secrets Operator
+# for production environments.
+# ===========================================
 
 ---
 # ===========================================
